@@ -26,19 +26,26 @@ public class StringManipulationTest {
         assertEquals(4, length);
     }
 
+    // Test that unset strings throw NullPointerException.
     @Test
     public void testCount2() {
-        fail("Not yet implemented");
+        assertThrows(NullPointerException.class, () -> {manipulatedstring.count();});
     }
 
+    // Test that empty strings have a word count of 0.
     @Test
     public void testCount3() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("");
+        int length = manipulatedstring.count();
+        assertEquals(0, length);
     }
 
+    // Test that a string of 1 single word but a trailing space has a word count of 1.
     @Test
     public void testCount4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("superfragilisticalidocious ");
+        int length = manipulatedstring.count();
+        assertEquals(1, length);
     }
 
     @Test
@@ -53,29 +60,38 @@ public class StringManipulationTest {
         assertEquals("I'  b tt r  ut s0 e  16 ts in th s  tr n6  r gh ?", manipulatedstring.removeNthCharacter(3, true));
     }
 
+    // Test that removal counts greater than the length of the string throw IndexOutOfBoundsException.
     @Test
     public void testRemoveNthCharacter3() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("only");
+        assertThrows(IndexOutOfBoundsException.class, () -> {manipulatedstring.removeNthCharacter(5, false);});
     }
 
+    // Test that removal counts smaller than 1 throw IllegalArgumentException.
     @Test
     public void testRemoveNthCharacter4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("Haha");
+        assertThrows(IllegalArgumentException.class, () -> {manipulatedstring.removeNthCharacter(0, false);});
     }
 
+    // Test that removal removes all characters, including whitespace characters.
     @Test
     public void testRemoveNthCharacter5() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("    \n\t");
+        assertEquals("   \n", manipulatedstring.removeNthCharacter(3, false));
     }
 
+    // Test that removal counts of 0 on strings with lengths of 0 still throw IllegalArgumentException.
     @Test
     public void testRemoveNthCharacter6() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("");
+        assertThrows(IllegalArgumentException.class, () -> {manipulatedstring.removeNthCharacter(0, false);});
     }
 
+    // Test that removal on unset strings throw NullPointerException.
     @Test
     public void testRemoveNthCharacter7() {
-        fail("Not yet implemented");
+        assertThrows(NullPointerException.class, () -> {manipulatedstring.removeNthCharacter(2, false);});
     }
 
     @Test
