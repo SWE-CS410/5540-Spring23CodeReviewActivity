@@ -77,8 +77,8 @@ public class StringManipulationTest {
     // Test that removal removes all characters, including whitespace characters.
     @Test
     public void testRemoveNthCharacter5() {
-        manipulatedstring.setString("    \n\t");
-        assertEquals("   \n", manipulatedstring.removeNthCharacter(3, false));
+        manipulatedstring.setString("    e\t");
+        assertEquals("   e", manipulatedstring.removeNthCharacter(3, false));
     }
 
     // Test that removal counts of 0 on strings with lengths of 0 still throw IllegalArgumentException.
@@ -103,28 +103,28 @@ public class StringManipulationTest {
         assertEquals(sStings[1], "string");
     }
 
-    // Test that endWord indexes greater than the length of the string throw IndexOutOfBoundsException.
+    // Test that endWord indices greater than the length of the string throw IndexOutOfBoundsException.
     @Test
     public void testGeSubStrings2() {
         manipulatedstring.setString("You");
         assertThrows(IndexOutOfBoundsException.class, () -> {manipulatedstring.getSubStrings(1, 5);});
     }
 
-    // Test that startWord indexes less than 1 throw IllegalArgumentException.
+    // Test that startWord indices less than 1 throw IllegalArgumentException.
     @Test
     public void testGeSubStrings3() {
         manipulatedstring.setString("You");
         assertThrows(IllegalArgumentException.class, () -> {manipulatedstring.getSubStrings(0, 3);});
     }
 
-    // Test that endWord indexes less than 1 throw IllegalArgumentException.
+    // Test that endWord indices less than 1 throw IllegalArgumentException.
     @Test
     public void testGeSubStrings4() {
         manipulatedstring.setString("You");
         assertThrows(IllegalArgumentException.class, () -> {manipulatedstring.getSubStrings(-3, -1);});
     }
 
-    // Test that endWord indexes less than the startWord indexes throw IllegalArgumentException.
+    // Test that endWord indices less than the startWord indices throw IllegalArgumentException.
     @Test
     public void testGeSubStrings5() {
         manipulatedstring.setString("You");
@@ -156,7 +156,7 @@ public class StringManipulationTest {
         assertThrows(IllegalArgumentException.class, () -> {manipulatedstring.restoreString(array);});
     }
 
-    // Test that restore arrays with indexes less than 0 throw IndexOutOfBoundsException.
+    // Test that restore arrays with indices less than 0 throw IndexOutOfBoundsException.
     @Test
     public void testRestoreString3()
     {
@@ -165,7 +165,7 @@ public class StringManipulationTest {
         assertThrows(IndexOutOfBoundsException.class, () -> {manipulatedstring.restoreString(array);});
     }
 
-    // Test that arrays with indexes greater than or equal to the length of the string throw IndexOutOfBoundsException.
+    // Test that arrays with indices greater than or equal to the length of the string throw IndexOutOfBoundsException.
     @Test
     public void testRestoreString4()
     {
