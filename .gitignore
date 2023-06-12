@@ -26,6 +26,5 @@ hs_err_pid*
 .idea
 *.iml
 target
-
-./.vscode/settings.json
-./lib/*.jar
+.vscode/settings.json
+lib/*.jar
