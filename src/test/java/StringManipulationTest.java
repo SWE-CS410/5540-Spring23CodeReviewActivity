@@ -103,25 +103,38 @@ public class StringManipulationTest {
         assertEquals(sStings[1], "string");
     }
 
+    // Test that endWord indexes greater than the length of the string throw IndexOutOfBoundsException.
     @Test
     public void testGeSubStrings2() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("You");
+        assertThrows(IndexOutOfBoundsException.class, () -> {manipulatedstring.getSubStrings(1, 5);});
     }
+
+    // Test that startWord indexes less than 1 throw IllegalArgumentException.
     @Test
     public void testGeSubStrings3() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("You");
+        assertThrows(IllegalArgumentException.class, () -> {manipulatedstring.getSubStrings(0, 3);});
     }
+
+    // Test that endWord indexes less than 1 throw IllegalArgumentException.
     @Test
     public void testGeSubStrings4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("You");
+        assertThrows(IllegalArgumentException.class, () -> {manipulatedstring.getSubStrings(-3, -1);});
     }
+
+    // Test that endWord indexes less than the startWord indexes throw IllegalArgumentException.
     @Test
     public void testGeSubStrings5() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("You");
+        assertThrows(IllegalArgumentException.class, () -> {manipulatedstring.getSubStrings(2, 1);});
     }
+
+    // Test that substring grabs on unset strings throw NullPointerException.
     @Test
     public void testGeSubStrings6() {
-        fail("Not yet implemented");
+        assertThrows(NullPointerException.class, () -> {manipulatedstring.getSubStrings(1, 5);});
     }
 
     @Test
@@ -134,32 +147,39 @@ public class StringManipulationTest {
         assertEquals(restoreString, "rat");
     }
 
+    // Test that restore arrays less than the length of the string throw IllegalArgumentException.
     @Test
     public void testRestoreString2()
     {
-        fail("Not yet implemented");
-
+        manipulatedstring.setString("That");
+        int[] array = {1, 0, 2};
+        assertThrows(IllegalArgumentException.class, () -> {manipulatedstring.restoreString(array);});
     }
 
+    // Test that restore arrays with indexes less than 0 throw IndexOutOfBoundsException.
     @Test
     public void testRestoreString3()
     {
-        fail("Not yet implemented");
-
+        manipulatedstring.setString("That");
+        int[] array = {1, 0, 2, -1};
+        assertThrows(IndexOutOfBoundsException.class, () -> {manipulatedstring.restoreString(array);});
     }
 
+    // Test that arrays with indexes greater than or equal to the length of the string throw IndexOutOfBoundsException.
     @Test
     public void testRestoreString4()
     {
-        fail("Not yet implemented");
-
+        manipulatedstring.setString("That");
+        int[] array = {1, 0, 2, 4};
+        assertThrows(IndexOutOfBoundsException.class, () -> {manipulatedstring.restoreString(array);});
     }
 
+    // Test that restoration on unset strings throw NullPointerException.
     @Test
     public void testRestoreString5()
     {
-        fail("Not yet implemented");
-
+        int[] array = {1, 0, 2, 3};
+        assertThrows(NullPointerException.class, () -> {manipulatedstring.restoreString(array);});
     }
 
 }
