@@ -28,17 +28,20 @@ public class StringManipulationTest {
 
     @Test
     public void testCount2() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("Mystring has total of 6 words!");
+        int length2 = manipulatedstring.count();
+        assertEquals(6, length2);
     }
 
     @Test
     public void testCount3() {
-        fail("Not yet implemented");
+        assertFalse(manipulatedstring.toString() == null, "String is null");
     }
 
     @Test
     public void testCount4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("This is Adrian's assertTrue condition");
+        assertTrue(manipulatedstring.count() == 5);
     }
 
     @Test
@@ -89,19 +92,28 @@ public class StringManipulationTest {
 
     @Test
     public void testGeSubStrings2() {
-        fail("Not yet implemented");
+        assertFalse(manipulatedstring.toString() == null, "String is null");
     }
     @Test
     public void testGeSubStrings3() {
-        fail("Not yet implemented");
+        manipulatedstring.setString(" This is a space string");
+        String [] sStr = manipulatedstring.getSubStrings(4,5);
+        assertEquals(sStr[0], "space");
+        assertEquals(sStr[1], "string");
     }
     @Test
     public void testGeSubStrings4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("This");
+        String [] sStr = manipulatedstring.getSubStrings(0,1);
+        assertFalse(manipulatedstring.toString().length()==1, "String is too small");
     }
     @Test
     public void testGeSubStrings5() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("This is a long 3tring with more words!");
+        String [] sStr = manipulatedstring.getSubStrings(2, 6);
+
+        assertEquals(sStr[2], "3tring");
+        assertTrue(sStr[3] == "with");
     }
     @Test
     public void testGeSubStrings6() {
@@ -121,28 +133,36 @@ public class StringManipulationTest {
     @Test
     public void testRestoreString2()
     {
-        fail("Not yet implemented");
+        manipulatedstring.setString("Tes2t");
+        int [] array;
+        array=new int[]{0,1,2,4,3};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals(restoreString, "Test2");
 
     }
 
     @Test
     public void testRestoreString3()
     {
-        fail("Not yet implemented");
+        assertFalse(manipulatedstring.toString() == "", "String is null");
 
     }
 
     @Test
     public void testRestoreString4()
     {
-        fail("Not yet implemented");
+        manipulatedstring.setString("longword");
+        int [] array2;
+        array2 = new int[]{0,1,2};
+        String restoreString2 = manipulatedstring.restoreString(array2);
+        assertEquals(restoreString2,"longword");
 
     }
 
     @Test
     public void testRestoreString5()
     {
-        fail("Not yet implemented");
+        assertNotNull(manipulatedstring);
 
     }
 
