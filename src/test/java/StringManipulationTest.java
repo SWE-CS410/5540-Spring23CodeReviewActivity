@@ -28,17 +28,29 @@ public class StringManipulationTest {
 
     @Test
     public void testCount2() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("");
+        int length = manipulatedstring.count();
+        assertEquals(0, length);
     }
 
     @Test
     public void testCount3() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("Hello, world!");
+        int length = manipulatedstring.count();
+        assertEquals(2, length);
     }
 
     @Test
     public void testCount4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("  Spaces   between  words ");
+        int length = manipulatedstring.count();
+        assertEquals(3, length);
+    }
+
+    public void testCount5() {
+        manipulatedstring.setString(" ABCDEFD ");
+        int length = manipulatedstring.count();
+        assertEquals(1, length);
     }
 
     @Test
@@ -55,27 +67,37 @@ public class StringManipulationTest {
 
     @Test
     public void testRemoveNthCharacter3() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("Hello");
+        String result = manipulatedstring.removeNthCharacter(0, true);
+        assertEquals("Hello", result);
     }
 
     @Test
     public void testRemoveNthCharacter4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString(null);
+        String result = manipulatedstring.removeNthCharacter(3, true);
+        assertNull(result);
     }
 
     @Test
     public void testRemoveNthCharacter5() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("Testing");
+        String result = manipulatedstring.removeNthCharacter(2, true);
+        assertEquals("Tsting", result);
     }
 
     @Test
     public void testRemoveNthCharacter6() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("Hello, World!");
+        String result = manipulatedstring.removeNthCharacter(8, true);
+        assertEquals("Hello, Wold!", result);
     }
 
     @Test
     public void testRemoveNthCharacter7() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("Testing");
+        String result = manipulatedstring.removeNthCharacter(10, false);
+        assertEquals("Testing", result);
     }
 
     @Test
@@ -88,24 +110,41 @@ public class StringManipulationTest {
     }
 
     @Test
-    public void testGeSubStrings2() {
-        fail("Not yet implemented");
+    public void testGetSubStrings2() {
+        manipulatedstring.setString("I love programming");
+        String[] subStrings = manipulatedstring.getSubStrings(1, 2);
+
+        assertEquals(subStrings[0],"love");
+        assertEquals(subStrings[1],"programming");
+    }
+    @Test
+    public void testGetSubStrings3() {
+        manipulatedstring.setString("");
+        String[] subStrings = manipulatedstring.getSubStrings(0, 1);
+        assertEquals(0, subStrings.length);
     }
     @Test
     public void testGeSubStrings3() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("Hello, World!");
+        String[] subStrings = manipulatedstring.getSubStrings(0, 1);
+
+        assertEquals(subStrings[0],"Hello," );
+        assertEquals(subStrings[1],"World!" );
     }
     @Test
     public void testGeSubStrings4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("I am amazing");
+        String[] subStrings = manipulatedstring.getSubStrings(0, 0);
+
+        assertEquals(subStrings[0],"I");
     }
     @Test
     public void testGeSubStrings5() {
-        fail("Not yet implemented");
-    }
-    @Test
-    public void testGeSubStrings6() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("Java is a programming language");
+        String[] subStrings = manipulatedstring.getSubStrings(4, 6);
+
+        assertEquals("programming", subStrings[0]);
+        assertEquals("language", subStrings[1]);
     }
 
     @Test
@@ -119,31 +158,35 @@ public class StringManipulationTest {
     }
 
     @Test
-    public void testRestoreString2()
-    {
-        fail("Not yet implemented");
-
+    public void testRestoreString2() {
+        manipulatedstring.setString("testing");
+        int[] indices = {0, 1, 2, 3, 4, 5, 6};
+        String restoredString = manipulatedstring.restoreString(indices);
+        assertEquals("testing", restoredString);
     }
 
     @Test
-    public void testRestoreString3()
-    {
-        fail("Not yet implemented");
-
+    public void testRestoreString3() {
+        manipulatedstring.setString("");
+        int[] indices = {};
+        String restoredString = manipulatedstring.restoreString(indices);
+        assertEquals("", restoredString);
     }
 
     @Test
-    public void testRestoreString4()
-    {
-        fail("Not yet implemented");
-
+    public void testRestoreString4() {
+        manipulatedstring.setString("hello");
+        int[] indices = {4, 3, 2, 1, 0};
+        String restoredString = manipulatedstring.restoreString(indices);
+        assertEquals("olleh", restoredString);
     }
 
     @Test
-    public void testRestoreString5()
-    {
-        fail("Not yet implemented");
-
+    public void testRestoreString5() {
+        manipulatedstring.setString("abcde");
+        int[] indices = {2, 0, 1, 4, 3};
+        String restoredString = manipulatedstring.restoreString(indices);
+        assertEquals("cabed", restoredString);
     }
 
 }
