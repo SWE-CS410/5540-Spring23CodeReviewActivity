@@ -85,7 +85,7 @@ public interface StringManipulationInterface {
      * indices: 4 5 6 7 0 1 2 3
      * String:  U n i t T e s t
      * Actions to Shuffle: Shift U to 4th position, n to 5th position, i to 6th position ......
-     * Output: T e s t U n i t
+     * Output: T s e t U n i t
      *         0 1 2 3 4 5 6 7
      * As shown, "UnitTest" becomes "TestUnit" after shuffling.
      *
