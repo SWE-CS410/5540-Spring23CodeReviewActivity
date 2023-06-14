@@ -19,6 +19,7 @@ public class StringManipulationTest {
         manipulatedstring = null;
     }
 
+    //basic test of length
     @Test
     public void testCount1() {
         manipulatedstring.setString("This is my string");
@@ -26,56 +27,97 @@ public class StringManipulationTest {
         assertEquals(4, length);
     }
 
+    //nothing stored
     @Test
     public void testCount2() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("");
+        int length = manipulatedstring.count();
+        assertEquals(0, length);
     }
 
+    //only numbers
     @Test
     public void testCount3() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("56 78 9");
+        int length = manipulatedstring.count();
+        assertEquals(3, length);
     }
 
+    //large amounts of spaces
     @Test
     public void testCount4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("this   and   that    ");
+        int length = manipulatedstring.count();
+        assertEquals(3, length);
     }
 
+    //test of false bool
     @Test
     public void testRemoveNthCharacter1() {
         manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
         assertEquals("I' bttr uts0e 16tsinths trn6 rgh?", manipulatedstring.removeNthCharacter(3, false));
     }
 
+    //test of true bool
     @Test
     public void testRemoveNthCharacter2() {
         manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
         assertEquals("I'  b tt r  ut s0 e  16 ts in th s  tr n6  r gh ?", manipulatedstring.removeNthCharacter(3, true));
     }
 
+    //test of making the string empty
     @Test
     public void testRemoveNthCharacter3() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("n");
+        int length = manipulatedstring.count();
+        assertEquals(1, length);
+
+        manipulatedstring.setString(manipulatedstring.removeNthCharacter(1, false));
+        length = manipulatedstring.count();
+        assertEquals(0, length);
     }
 
+    //test of removal making more words
     @Test
     public void testRemoveNthCharacter4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("anger");
+        int length = manipulatedstring.count();
+        assertEquals(1, length);
+
+        manipulatedstring.setString(manipulatedstring.removeNthCharacter(3, true));
+        length = manipulatedstring.count();
+        assertEquals(2, length);
     }
 
+    //removal of space, merging two words
     @Test
     public void testRemoveNthCharacter5() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("an er");
+        int length = manipulatedstring.count();
+        assertEquals(2, length);
+
+        manipulatedstring.setString(manipulatedstring.removeNthCharacter(3, false));
+        length = manipulatedstring.count();
+        assertEquals(1, length);
     }
 
+    //IndexOB test
     @Test
     public void testRemoveNthCharacter6() {
-        fail("Not yet implemented");
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            manipulatedstring.setString("anger");
+            manipulatedstring.removeNthCharacter(6, false);
+        });   
     }
 
+    //IllegalArg test 
     @Test
     public void testRemoveNthCharacter7() {
-        fail("Not yet implemented");
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.setString("anger");
+            manipulatedstring.removeNthCharacter(0, false);
+        });
+        
     }
 
     @Test
@@ -87,25 +129,56 @@ public class StringManipulationTest {
         assertEquals(sStings[1], "string");
     }
 
+    //test for single string selection
     @Test
     public void testGeSubStrings2() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("Success");
+        String [] sStings = manipulatedstring.getSubStrings(1, 1);
+
+        assertEquals(sStings[0], "Success");
     }
+
+    //test for many strings
     @Test
     public void testGeSubStrings3() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("This is my string and I hope that if I make it a lot longer everything will work out");
+        String [] sStings = manipulatedstring.getSubStrings(3, 10);
+
+        assertEquals(sStings[0], "my");
+        assertEquals(sStings[1], "string");
+        assertEquals(sStings[2], "and");
+        assertEquals(sStings[3], "I");
+        assertEquals(sStings[4], "hope");
+        assertEquals(sStings[5], "that");
+        assertEquals(sStings[6], "if");
+        assertEquals(sStings[7], "I");
     }
+
+    //test for punctuation
     @Test
     public void testGeSubStrings4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("Success!");
+        String [] sStings = manipulatedstring.getSubStrings(1, 1);
+
+        assertEquals(sStings[0], "Success!");
     }
+    
+    //IndexOB test
     @Test
     public void testGeSubStrings5() {
-        fail("Not yet implemented");
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.setString("bad test!");
+            String [] sStings = manipulatedstring.getSubStrings(2, 5);
+        });
     }
+
+    //IllegalArg test
     @Test
     public void testGeSubStrings6() {
-        fail("Not yet implemented");
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            manipulatedstring.setString("bad test!");
+            String [] sStings = manipulatedstring.getSubStrings(0, 0);
+        });
     }
 
     @Test
@@ -118,31 +191,52 @@ public class StringManipulationTest {
         assertEquals(restoreString, "rat");
     }
 
+    //maintains capitalization test
     @Test
     public void testRestoreString2()
     {
-        fail("Not yet implemented");
+        manipulatedstring.setString("Art");
+        int [] array;
+        array=new int[]{1,0,2};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals(restoreString, "rAt");
 
     }
 
+    //maintains spaces test
     @Test
     public void testRestoreString3()
     {
-        fail("Not yet implemented");
+        manipulatedstring.setString("r u");
+        int [] array;
+        array=new int[]{1,0,2};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals(restoreString, " ru");
 
     }
 
+    //IllegalArg test
     @Test
     public void testRestoreString4()
     {
-        fail("Not yet implemented");
-
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.setString("r u");
+            int [] array;
+            array=new int[]{1,0,2,2,1,0};
+            String restoreString = manipulatedstring.restoreString(array);
+        });
     }
 
+    //IndexOB test
     @Test
     public void testRestoreString5()
     {
-        fail("Not yet implemented");
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            manipulatedstring.setString("r u");
+            int [] array;
+            array=new int[]{1,0,6};
+            String restoreString = manipulatedstring.restoreString(array);
+        });
 
     }
 
