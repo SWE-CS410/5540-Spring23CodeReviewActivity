@@ -1,4 +1,4 @@
-[![Build Status](https://app.travis-ci.com/sarafarag/Spring22CodeReviewActivity.svg?token=pcgRqfKGuCm9Gai24pHo&branch=main)](https://app.travis-ci.com/sarafarag/Spring22CodeReviewActivity)
+[![Build Status](https://app.travis-ci.com/SilverSynch/5540-Spring23CodeReviewActivity.svg?branch=main)](https://app.travis-ci.com/github/SilverSynch/5540-Spring23CodeReviewActivity)
 
 @BCComputerScience
 
