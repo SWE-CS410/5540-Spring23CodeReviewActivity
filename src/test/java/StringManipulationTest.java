@@ -28,17 +28,26 @@ public class StringManipulationTest {
 
     @Test
     public void testCount2() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("bread is delicious");
+        int length = manipulatedstring.count();
+        assertEquals(3, length);
+
+
     }
 
     @Test
     public void testCount3() {
-        fail("Not yet implemented");
+
+        manipulatedstring.setString("cats 3re delicious");
+        int length = manipulatedstring.count();
+        assertEquals(3, length);
     }
 
     @Test
     public void testCount4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("birds          worms");
+        int length = manipulatedstring.count();
+        assertEquals(2, length);
     }
 
     @Test
@@ -55,27 +64,40 @@ public class StringManipulationTest {
 
     @Test
     public void testRemoveNthCharacter3() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("I'm going want to eat bread");
+        assertEquals("I'  g in  w nt to ea  b ea", manipulatedstring.removeNthCharacter(3, true));
     }
 
     @Test
     public void testRemoveNthCharacter4() {
-        fail("Not yet implemented");
+
+        manipulatedstring.setString("I'm    going     want  to eat bread");
+        assertEquals("I'   gin    an  o atbrad",manipulatedstring.removeNthCharacter(3,false));
+
     }
 
     @Test
     public void testRemoveNthCharacter5() {
-        fail("Not yet implemented");
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.setString("bread is always life");
+            manipulatedstring.removeNthCharacter(-1,false);
+        });
     }
 
     @Test
     public void testRemoveNthCharacter6() {
-        fail("Not yet implemented");
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.setString("bread is always life");
+            manipulatedstring.removeNthCharacter(-1,true);
+        });
     }
 
     @Test
     public void testRemoveNthCharacter7() {
-        fail("Not yet implemented");
+        assertThrows(IllegalArgumentException.class, ()->{
+            manipulatedstring.setString("bread is always life");
+            manipulatedstring.removeNthCharacter(-1, false);
+        });
     }
 
     @Test
@@ -88,24 +110,32 @@ public class StringManipulationTest {
     }
 
     @Test
-    public void testGeSubStrings2() {
-        fail("Not yet implemented");
+    public void testGeSubStrings2(){
+        manipulatedstring.setString("this is another string");
+        String [] sStrings = manipulatedstring.getSubStrings(1,2);
+        assertEquals(sStrings[0], "this");
+        assertEquals(sStrings[1], "is");
     }
     @Test
     public void testGeSubStrings3() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("this is another string");
+        assertThrows(IllegalArgumentException.class, ()-> manipulatedstring.getSubStrings(0,3));
+
     }
     @Test
     public void testGeSubStrings4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("this is another string");
+        assertThrows(IndexOutOfBoundsException.class, ()-> manipulatedstring.getSubStrings(1,5));
     }
     @Test
     public void testGeSubStrings5() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("this is another string");
+        assertThrows(IndexOutOfBoundsException.class, ()-> manipulatedstring.getSubStrings(1,5));
     }
     @Test
     public void testGeSubStrings6() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("this is another string");
+        assertThrows(IllegalArgumentException.class, ()-> manipulatedstring.getSubStrings(0,3));
     }
 
     @Test
@@ -121,28 +151,44 @@ public class StringManipulationTest {
     @Test
     public void testRestoreString2()
     {
-        fail("Not yet implemented");
+        manipulatedstring.setString("racecar");
+        int [] array;
+        array=new int[]{3,4,5,6,0,1,2};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals(restoreString, "carrace");
 
     }
 
     @Test
     public void testRestoreString3()
     {
-        fail("Not yet implemented");
+        manipulatedstring.setString("art_");
+        int [] array;
+        array=new int[]{1,0,2,3};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals(restoreString, "rat_");
 
     }
 
     @Test
     public void testRestoreString4()
     {
-        fail("Not yet implemented");
+        manipulatedstring.setString("readb");
+        int[] indices = { 0,1,2,3,4,5 };
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.restoreString(indices);
+        });
 
     }
 
     @Test
     public void testRestoreString5()
     {
-        fail("Not yet implemented");
+        manipulatedstring.setString("readb");
+        int[] indices = { 0,1,2,3,4,5 };
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.restoreString(indices);
+        });
 
     }
 
