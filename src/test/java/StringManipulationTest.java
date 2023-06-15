@@ -28,17 +28,20 @@ public class StringManipulationTest {
 
     @Test
     public void testCount2() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("Mystring has total of 6 words!");
+        int length2 = manipulatedstring.count();
+        assertEquals(6, length2);
     }
 
     @Test
     public void testCount3() {
-        fail("Not yet implemented");
+        assertFalse(manipulatedstring.toString() == null, "String is null");
     }
 
     @Test
     public void testCount4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("This is Adrian's assertTrue condition");
+        assertTrue(manipulatedstring.count() == 5);
     }
 
     @Test
@@ -55,27 +58,38 @@ public class StringManipulationTest {
 
     @Test
     public void testRemoveNthCharacter3() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
+        assertEquals("I' bttr uts0e 16tsinths trn6 rgh?", manipulatedstring.removeNthCharacter(3, false));
+    };
     }
 
     @Test
-    public void testRemoveNthCharacter4() {
-        fail("Not yet implemented");
+    public void testRemoveNthCharacter4(){
+
+        manipulatedstring.setString("Hi there")
+        assertThrows(IllegalArgumentException.class, ()->
+        manipulatedstring.removeNthCharacter(0, false));
     }
 
     @Test
     public void testRemoveNthCharacter5() {
-        fail("Not yet implemented");
+        manipulatedstring.setString(null);
+        assertThrows(NullPointerException.class, ()->
+                manipulatedstring.removeNthCharacter(4, false));
     }
 
     @Test
     public void testRemoveNthCharacter6() {
-        fail("Not yet implemented");
+        String s = "this does have only four char word";
+        manipulatedstring.setString(s);
+        assertEquals("thisdoeshaveonlyfourcharword", manipulatedstring.removeNthCharacter(5, false));
     }
 
     @Test
     public void testRemoveNthCharacter7() {
         fail("Not yet implemented");
+        manipulatedstring.setString("this will have only four char word");
+        assertEquals("this ill hve ony fou charword", manipulatedstring.removeNthCharacter(6,false));
     }
 
     @Test
@@ -89,23 +103,36 @@ public class StringManipulationTest {
 
     @Test
     public void testGeSubStrings2() {
-        fail("Not yet implemented");
+        assertFalse(manipulatedstring.toString() == null, "String is null");
     }
     @Test
     public void testGeSubStrings3() {
-        fail("Not yet implemented");
+        manipulatedstring.setString(" This is a space string");
+        String [] sStr = manipulatedstring.getSubStrings(4,5);
+        assertEquals(sStr[0], "space");
+        assertEquals(sStr[1], "string");
     }
     @Test
     public void testGeSubStrings4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("This");
+        String [] sStr = manipulatedstring.getSubStrings(0,1);
+        assertFalse(manipulatedstring.toString().length()==1, "String is too small");
     }
     @Test
     public void testGeSubStrings5() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("This is a long 3tring with more words!");
+        String [] sStr = manipulatedstring.getSubStrings(2, 6);
+
+        assertEquals(sStr[2], "3tring");
+        assertTrue(sStr[3] == "with");
     }
     @Test
     public void testGeSubStrings6() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("     one    m1x o0ff   w00rds is trash");
+        String [] words = manipulatedstring.getSubStrings(1,3);
+
+        assertEquals("one", words[0]);
+        assertEquals("is", words[1]);
     }
 
     @Test
@@ -121,28 +148,43 @@ public class StringManipulationTest {
     @Test
     public void testRestoreString2()
     {
-        fail("Not yet implemented");
+        manipulatedstring.setString("Tes2t");
+        int [] array;
+        array=new int[]{0,1,2,4,3};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals(restoreString, "Test2");
 
     }
 
     @Test
     public void testRestoreString3()
     {
-        fail("Not yet implemented");
+
+        manipulatedstring.setString(" This is an unlikely string");
+        int arr[] = new int[]{1,0,5,7,20,12,10,23,18,3,2,4,6,19,8,9,22,11,21,13,14,15,16,17};
+        assertEquals("This is an unlikely string ", manipulatedstring.restoreString(arr));
 
     }
 
     @Test
     public void testRestoreString4()
     {
-        fail("Not yet implemented");
+        manipulatedstring.setString("longword");
+        int [] array2;
+        array2 = new int[]{0,1,2};
+        String restoreString2 = manipulatedstring.restoreString(array2);
+        assertEquals(restoreString2,"longword");
 
     }
 
     @Test
     public void testRestoreString5()
     {
-        fail("Not yet implemented");
+        manipulatedstring.setString("aRT");
+        int [] array;
+        array=new int[]{1,0,2};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals(restoreString, "RaT");
 
     }
 
