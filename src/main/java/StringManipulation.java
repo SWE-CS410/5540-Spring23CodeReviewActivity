@@ -19,8 +19,18 @@ public class StringManipulation implements StringManipulationInterface {
         if(this.str == null || this.str.isEmpty()){
             return 0;
         }
+
         String[] words = this.str.split("\\s+");
-        return words.length;
+
+        int wordCount = 0;
+        for (String word : words) {
+            // Count words and numerical values as a word.
+            // Ignore punctuation.
+            if (word.matches(".*[a-zA-Z0-9].*")) {
+                wordCount++;
+            }
+        }
+        return wordCount;
     }
 
     public String removeNthCharacter(int n, boolean maintainSpacing) {
@@ -85,5 +95,4 @@ public class StringManipulation implements StringManipulationInterface {
         }
         return new String(shuffledString);
     }
-
 }

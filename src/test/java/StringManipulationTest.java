@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,6 +26,7 @@ public class StringManipulationTest {
         String actual = manipulatedstring.getString();
         assertEquals(expected, actual);
     }
+
     @Test
     public void testCount1() {
         manipulatedstring.setString("This is my string");
@@ -32,7 +34,7 @@ public class StringManipulationTest {
         assertEquals(4, length);
     }
 
-    // Test when string has multiple punctuations.
+    //Test when string has multiple punctuations.
     @Test
     public void testCount2() {
         manipulatedstring.setString("This isn't my string!");
@@ -42,6 +44,7 @@ public class StringManipulationTest {
 
     // Test when string is empty.
     // Expected return is 0
+    @DisplayName("Count empty string")
     @Test
     public void testCount3() {
         manipulatedstring.setString("");
@@ -52,6 +55,7 @@ public class StringManipulationTest {
     // Test when string is null
     // Expected return is 0
     @Test
+    @DisplayName("Count null")
     public void testCount4() {
         manipulatedstring.setString(null);
         int length = manipulatedstring.count();
@@ -65,6 +69,26 @@ public class StringManipulationTest {
         manipulatedstring.setString("     ");
         int length = manipulatedstring.count();
         assertEquals(0, length);    }
+
+    // Test when string has space separated punctuations.
+    // Expected return is 0
+    @Test
+    @DisplayName("Count punctuation")
+    public void testCount6() {
+        manipulatedstring.setString("! ? ] ");
+        int length = manipulatedstring.count();
+        assertEquals(0, length);
+    }
+
+    // Test when string has numerical value.
+    // Expected return is 1
+    @Test
+    @DisplayName("Count numeric")
+    public void testCount7() {
+        manipulatedstring.setString("! 123 ");
+        int length = manipulatedstring.count();
+        assertEquals(1, length);
+    }
 
     // Test if the method removes the right characters without maintaining spacing
     @Test
@@ -84,7 +108,7 @@ public class StringManipulationTest {
         assertEquals(expected, actual);
     }
 
-    // Throw IllegalArgumentException if the given index is less than or equal to 0
+    // Throw IndexOutOfBoundException if the given index is exceeds the size of the string
     @Test
     public void testRemoveNthCharacter3() {
         manipulatedstring.setString("This is 28 character string.");
@@ -92,7 +116,7 @@ public class StringManipulationTest {
             manipulatedstring.removeNthCharacter(29, true);});
     }
 
-    // Throw IndexOutOfBoundException if the given index is exceeds the size of the string
+    // Throw IndexOutOfBoundsException if the given index is less than or equal to 0
     @Test
     public void testRemoveNthCharacter4() {
         manipulatedstring.setString("This is 28 character string.");
