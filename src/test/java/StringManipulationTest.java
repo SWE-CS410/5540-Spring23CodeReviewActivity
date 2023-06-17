@@ -135,14 +135,14 @@ public class StringManipulationTest {
     }
 
     @Test
-    //testGeSubStrings2 calls testGeSubStrings with a String parameter containing lots of whitespace 
-    //and ensures the method returns the correct output
+    //testGeSubStrings2 calls testGeSubStrings with a negative startword parameter
+    //and ensures the method throws an IllegalArgumentException
     public void testGeSubStrings2() {
-        manipulatedstring.setString("This        is my                            string");
-        String [] sStings = manipulatedstring.getSubStrings(1, 3);
-        assertEquals(sStings[0], "This");
-        assertEquals(sStings[1], "is");
-        assertEquals(sStings[2], "my");
+        assertThrows(IllegalArgumentException.class,
+        () ->{
+            manipulatedstring.setString("This        is my                            string");
+            String [] sStings = manipulatedstring.getSubStrings(-1, 3);
+        });
     }
     
     @Test
