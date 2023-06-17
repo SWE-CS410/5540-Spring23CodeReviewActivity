@@ -14,26 +14,39 @@ public class StringManipulation implements StringManipulationInterface {
 
     @Override
     public int count() {
-        if (string==null) {
-
-            return 0;
+        String[] result = string.split("\s+");
+        int word = 0;
+        for (String current : result) {
+            if (!current.isEmpty()) {
+                word++;
+            }
         }
-        String[] words = string.split("\\s+");
-        return words.length;
+        return word;
     }
 
     @Override
     public String removeNthCharacter(int n, boolean maintainSpacing) {
-        if (string == null || string.isEmpty()) {
-            return "";
+        int length = string.length();
+
+        if (n > string.length()) {
+            throw new IndexOutOfBoundsException("Out Of Bound");
+//            System.out.println("Out Of Bound");
         }
+
+        if (n <= 0) {
+            throw new IllegalArgumentException("Invalid");
+        }
+
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < string.length(); i++) {
-            char c = string.charAt(i);
-            if ((i + 1) % n != 0) {
-                if (maintainSpacing || !Character.isWhitespace(c)) {
-                    result.append(c);
-                }
+
+        for (int index = 0; index < length; index++) {
+            int compare = index + 1;
+
+            if (compare % n != 0) {
+                result.append(string.charAt(index));
+
+            } else if (maintainSpacing == true) {
+                result.append(' ');
             }
         }
         return result.toString();
@@ -41,34 +54,46 @@ public class StringManipulation implements StringManipulationInterface {
 
     @Override
     public String[] getSubStrings(int startWord, int endWord) {
-        if (string == null || string.isEmpty()) {
-            return new String[0];
+        if (startWord <= 0 || endWord <= 0 || startWord > endWord) {
+            throw new IllegalArgumentException("Invalid startWord or endWord");
         }
-        String[] words = string.trim().split("\\s+");
-        if (startWord < 0 || startWord >= words.length || endWord < 0 || endWord >= words.length || startWord > endWord) {
-            return new String[0];
+        //String sentence = "This is an example sentence";
+        String[] words = this.string.split(" ");
+
+        if (endWord > words.length) {
+            throw new IndexOutOfBoundsException("Not enough words in the sentence");
         }
-        int numSubstrings = endWord - startWord + 1;
-        String[] substrings = new String[numSubstrings];
+
+        String[] subStrings = new String[endWord - startWord + 1];
         int index = 0;
-        for (int i = startWord; i <= endWord; i++) {
-            substrings[index] = words[i];
+
+        for (int i = startWord - 1; i < endWord; i++) {
+            subStrings[index] = words[i];
             index++;
         }
-        return substrings;
+
+        return subStrings;
     }
+
 
     @Override
     public String restoreString(int[] indices) {
         if (string == null || string.isEmpty() || indices == null || indices.length != string.length()) {
             return "";
         }
-        char[] chars = string.toCharArray();
-        char[] restored = new char[indices.length];
+
+        char[] restoredChars = new char[string.length()];
+
         for (int i = 0; i < indices.length; i++) {
-            restored[indices[i]] = chars[i];
+            int index = indices[i];
+            if (index < 0 || index >= string.length()) {
+                return "";
+            }
+            restoredChars[index] = string.charAt(i);
         }
-        return new String(restored);
+
+        return new String(restoredChars);
     }
+
 }
 

@@ -1,3 +1,4 @@
+import jdk.jfr.StackTrace;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -64,40 +65,35 @@ public class StringManipulationTest {
         manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
         assertEquals("I'  b tt r  ut s0 e  16 ts in th s  tr n6  r gh ?", manipulatedstring.removeNthCharacter(3, true));
     }
-
     @Test
     public void testRemoveNthCharacter3() {
-        manipulatedstring.setString("Hello");
-        String result = manipulatedstring.removeNthCharacter(0, true);
-        assertEquals("Hello", result);
+        manipulatedstring.setString("Test");
+        assertEquals("Te t", manipulatedstring.removeNthCharacter(3, true));
     }
-
     @Test
     public void testRemoveNthCharacter4() {
-        manipulatedstring.setString(null);
-        String result = manipulatedstring.removeNthCharacter(3, true);
-        assertNull(result);
+        manipulatedstring.setString("Hello World");
+        assertEquals("He lo Wo ld", manipulatedstring.removeNthCharacter(3, true));
     }
 
     @Test
     public void testRemoveNthCharacter5() {
-        manipulatedstring.setString("Testing");
-        String result = manipulatedstring.removeNthCharacter(2, true);
-        assertEquals("Tsting", result);
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            manipulatedstring.setString("love");
+            manipulatedstring.removeNthCharacter(7, true);
+        });
     }
-
     @Test
     public void testRemoveNthCharacter6() {
-        manipulatedstring.setString("Hello, World!");
-        String result = manipulatedstring.removeNthCharacter(8, true);
-        assertEquals("Hello, Wold!", result);
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.setString(" ");
+            manipulatedstring.removeNthCharacter(0, true);
+        });
     }
-
     @Test
-    public void testRemoveNthCharacter7() {
-        manipulatedstring.setString("Testing");
-        String result = manipulatedstring.removeNthCharacter(10, false);
-        assertEquals("Testing", result);
+    public void testRemoveNthCharacter7(){
+        manipulatedstring.setString("A B C D E F");
+        assertEquals("A B C D E F", manipulatedstring.removeNthCharacter(4, true));
     }
 
     @Test
@@ -111,41 +107,38 @@ public class StringManipulationTest {
 
     @Test
     public void testGetSubStrings2() {
-        manipulatedstring.setString("I love programming");
-        String[] subStrings = manipulatedstring.getSubStrings(1, 2);
-
-        assertEquals(subStrings[0],"love");
-        assertEquals(subStrings[1],"programming");
+        manipulatedstring.setString("OnlyOneWord");
+        String[] subStrings = manipulatedstring.getSubStrings(1, 1);
+        assertEquals(subStrings[0],"OnlyOneWord");
     }
+
     @Test
     public void testGetSubStrings3() {
-        manipulatedstring.setString("");
-        String[] subStrings = manipulatedstring.getSubStrings(0, 1);
-        assertEquals(0, subStrings.length);
-    }
-    @Test
-    public void testGeSubStrings3() {
-        manipulatedstring.setString("Hello, World!");
-        String[] subStrings = manipulatedstring.getSubStrings(0, 1);
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            manipulatedstring.setString("One Two Three Four Five");
+            String[] subStrings = manipulatedstring.getSubStrings(4, 6);
 
-        assertEquals(subStrings[0],"Hello," );
-        assertEquals(subStrings[1],"World!" );
+            assertEquals("Four", subStrings[0]);
+            assertEquals("Five", subStrings[1]);
+        });
     }
-    @Test
-    public void testGeSubStrings4() {
-        manipulatedstring.setString("I am amazing");
-        String[] subStrings = manipulatedstring.getSubStrings(0, 0);
 
-        assertEquals(subStrings[0],"I");
-    }
     @Test
-    public void testGeSubStrings5() {
-        manipulatedstring.setString("Java is a programming language");
-        String[] subStrings = manipulatedstring.getSubStrings(4, 6);
-
-        assertEquals("programming", subStrings[0]);
-        assertEquals("language", subStrings[1]);
+    public void testGetSubStrings4() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.setString("One Two Three Four Five");
+            String[] subStrings = manipulatedstring.getSubStrings(50,1);
+        });
     }
+
+    @Test
+    public void testGetSubString5() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.setString("Programming");
+            String[] subStrings = manipulatedstring.getSubStrings(0, 0);
+        });
+    }
+
 
     @Test
     public void testRestoreString1()
@@ -183,10 +176,10 @@ public class StringManipulationTest {
 
     @Test
     public void testRestoreString5() {
-        manipulatedstring.setString("abcde");
-        int[] indices = {2, 0, 1, 4, 3};
+        manipulatedstring.setString("world");
+        int[] indices = {0, 2, 1, 4, 3};
         String restoredString = manipulatedstring.restoreString(indices);
-        assertEquals("cabed", restoredString);
+        assertEquals("wrodl", restoredString);
     }
 
 }
