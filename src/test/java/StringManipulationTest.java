@@ -153,9 +153,9 @@ public class StringManipulationTest {
     @Test
     public void testRestoreString2() {
         manipulatedstring.setString("testing");
-        int[] indices = {0, 1, 2, 3, 4, 5, 6};
+        int[] indices = {};
         String restoredString = manipulatedstring.restoreString(indices);
-        assertEquals("testing", restoredString);
+        assertEquals("", restoredString);
     }
 
     @Test
@@ -177,7 +177,7 @@ public class StringManipulationTest {
     @Test
     public void testRestoreString5() {
         manipulatedstring.setString("world");
-        int[] indices = {0, 2, 1, 5};
+        int[] indices = {0, 2, 1, 3, 5};
         String restoredString = manipulatedstring.restoreString(indices);
         assertEquals("", restoredString);
     }
