@@ -66,9 +66,12 @@ public class StringManipulationTest {
     }
     @Test
     public void testRemoveNthCharacter3() {
-        //null 
-        assertEquals("", manipulatedstring.removeNthCharacter(3, true));
+        //null
+        assertThrows(NullPointerException.class,() ->{ 
+        manipulatedstring.removeNthCharacter(3, true);    
+        });
     }
+
 
     @Test
     public void testRemoveNthCharacter4(){

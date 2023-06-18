@@ -15,9 +15,14 @@ public class StringManipulation implements StringManipulationInterface {
     @Override
     public int count() {
          
-        if (this.string == null || this.string.isEmpty()){
+        if (this.string == null){
+            throw new NullPointerException("NullPointerException");
+        }
+
+        if (this.string.isEmpty()){
             return 0;
         }
+
         String[] result = this.string.split("\s+");
         int word = 0;
         for (String current : result) {
@@ -32,7 +37,7 @@ public class StringManipulation implements StringManipulationInterface {
     public String removeNthCharacter(int n, boolean maintainSpacing) {
         
         if (this.string == null || this.string.isEmpty()){
-            return "";
+            throw new NullPointerException("NullPointerException");
         }
         int length = string.length();
 
@@ -87,7 +92,7 @@ public class StringManipulation implements StringManipulationInterface {
     @Override
     public String restoreString(int[] indices) {
         if (string == null || string.isEmpty() || indices == null || indices.length != string.length()) {
-            return "";
+            throw new NullPointerException("NullPointerException");
         }
 
         char[] restoredChars = new char[string.length()];
@@ -95,7 +100,7 @@ public class StringManipulation implements StringManipulationInterface {
         for (int i = 0; i < indices.length; i++) {
             int index = indices[i];
             if (index < 0 || index >= string.length()) {
-                return "";
+                throw new IndexOutOfBoundsException("Not enough words in the sentence");
             }
             restoredChars[index] = string.charAt(i);
         }
