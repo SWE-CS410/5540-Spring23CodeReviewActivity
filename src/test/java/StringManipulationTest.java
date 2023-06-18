@@ -77,6 +77,7 @@ public class StringManipulationTest {
         manipulatedstring.setString("BUBU");
         manipulatedstring.removeNthCharacter(-3, true);
         });
+    }
 
     @Test
     public void testRemoveNthCharacter5(){
