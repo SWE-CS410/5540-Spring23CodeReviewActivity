@@ -166,20 +166,20 @@ public class StringManipulationTest {
         assertEquals("", restoredString);
     }
 
-    @Test
+   @Test
     public void testRestoreString4() {
         manipulatedstring.setString("hello");
-        int[] indices = {4, 3, 2, 1, 0};
+        int[] indices = {4, 3, 2, 1, -1};
         String restoredString = manipulatedstring.restoreString(indices);
-        assertEquals("olleh", restoredString);
+        assertEquals("", restoredString);
     }
 
     @Test
     public void testRestoreString5() {
         manipulatedstring.setString("world");
-        int[] indices = {0, 2, 1, 4, 3};
+        int[] indices = {0, 2, 1, 4, 3, 5};
         String restoredString = manipulatedstring.restoreString(indices);
-        assertEquals("wrodl", restoredString);
+        assertEquals("", restoredString);
     }
 
 }
