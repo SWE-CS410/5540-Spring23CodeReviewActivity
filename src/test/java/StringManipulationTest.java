@@ -36,9 +36,8 @@ public class StringManipulationTest {
 
     @Test
     public void testCount3() {
-        manipulatedstring.setString("Hello, world!");
         int length = manipulatedstring.count();
-        assertEquals(2, length);
+        assertEquals(0, length);
     }
 
     @Test
