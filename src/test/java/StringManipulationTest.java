@@ -36,8 +36,9 @@ public class StringManipulationTest {
 
     @Test
     public void testCount3() {
+        assertThrows(IllegalArgumentException.class, () -> { 
         int length = manipulatedstring.count();
-        assertEquals(0, length);
+        });
     }
 
     @Test
@@ -68,17 +69,17 @@ public class StringManipulationTest {
     public void testRemoveNthCharacter3() {
         //null
         assertThrows(NullPointerException.class,() ->{ 
-        manipulatedstring.removeNthCharacter(3, true);    
-        });
+            manipulatedstring.removeNthCharacter(3, true);    
+            });
     }
 
 
     @Test
     public void testRemoveNthCharacter4(){
         assertThrows(IllegalArgumentException.class, () -> {  
-        manipulatedstring.setString("BUBU");
-        manipulatedstring.removeNthCharacter(-3, true);
-        });
+            manipulatedstring.setString("BUBU");
+            manipulatedstring.removeNthCharacter(-3, true);
+            });
     }
 
     @Test
@@ -99,8 +100,9 @@ public class StringManipulationTest {
 
     @Test
     public void testRemoveNthCharacter7(){
-        manipulatedstring.setString(""); //empty
-        assertEquals("", manipulatedstring.removeNthCharacter(1, false));
+        assertThrows(IllegalArgumentException.class, () -> {  
+            manipulatedstring.setString(""); //empty
+            });
     }
 
 
@@ -116,9 +118,9 @@ public class StringManipulationTest {
     @Test
     public void testGetSubStrings2() {
         assertThrows(IllegalArgumentException.class, () -> {
-        manipulatedstring.setString("OnlyOneWord");
-        String[] subStrings = manipulatedstring.getSubStrings(1, -1);
-        });
+            manipulatedstring.setString("OnlyOneWord");
+            String[] subStrings = manipulatedstring.getSubStrings(1, -1);
+            });
     }
 
     @Test
@@ -161,26 +163,29 @@ public class StringManipulationTest {
 
     @Test
     public void testRestoreString2() {
-        manipulatedstring.setString("testing");
-        int[] indices = {};
-        String restoredString = manipulatedstring.restoreString(indices);
-        assertEquals("", restoredString);
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.setString("testing");
+            int[] indices = {};
+            String restoredString = manipulatedstring.restoreString(indices);
+            });
     }
 
     @Test
     public void testRestoreString3() {
-        manipulatedstring.setString("");
-        int[] indices = {};
-        String restoredString = manipulatedstring.restoreString(indices);
-        assertEquals("", restoredString);
+        assertThrows(NullPointerException.class,() ->{ 
+            manipulatedstring.setString("");
+            int[] indices = {};
+            String restoredString = manipulatedstring.restoreString(indices);
+            });
     }
 
    @Test
     public void testRestoreString4() {
-        manipulatedstring.setString("hello");
-        int[] indices = {4, 3, 2, 1, -1};
-        String restoredString = manipulatedstring.restoreString(indices);
-        assertEquals("", restoredString);
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            manipulatedstring.setString("hello");
+            int[] indices = {4, 3, 2, 1, -1};
+            String restoredString = manipulatedstring.restoreString(indices);
+            });
     }
 
     @Test
