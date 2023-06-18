@@ -113,9 +113,10 @@ public class StringManipulationTest {
 
     @Test
     public void testGetSubStrings2() {
+        assertThrows(IllegalArgumentException.class, () -> {
         manipulatedstring.setString("OnlyOneWord");
-        String[] subStrings = manipulatedstring.getSubStrings(1, 1);
-        assertEquals(subStrings[0],"OnlyOneWord");
+        String[] subStrings = manipulatedstring.getSubStrings(1, -1);
+        });
     }
 
     @Test
