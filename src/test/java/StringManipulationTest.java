@@ -177,7 +177,7 @@ public class StringManipulationTest {
     @Test
     public void testRestoreString5() {
         manipulatedstring.setString("world");
-        int[] indices = {0, 2, 1, 4, 3, 5};
+        int[] indices = {0, 2, 1, 5};
         String restoredString = manipulatedstring.restoreString(indices);
         assertEquals("", restoredString);
     }
