@@ -67,8 +67,8 @@ public class StringManipulationTest {
     }
     @Test
     public void testRemoveNthCharacter3() {
-        manipulatedstring.setString("Test");
-        assertEquals("Te t", manipulatedstring.removeNthCharacter(3, true));
+        //null 
+        assertEquals("", manipulatedstring.removeNthCharacter(3, true));
     }
 
     @Test
@@ -90,14 +90,14 @@ public class StringManipulationTest {
     @Test
     public void testRemoveNthCharacter6(){
         assertThrows(IllegalArgumentException.class, () -> {
-            manipulatedstring.setString(" ");
+            manipulatedstring.setString(" "); 
             manipulatedstring.removeNthCharacter(0, true);
         });
     }
 
     @Test
     public void testRemoveNthCharacter7(){
-        manipulatedstring.setString("A B C D E F");
+        manipulatedstring.setString(""); //empty
         assertEquals("", manipulatedstring.removeNthCharacter(1, false));
     }
 

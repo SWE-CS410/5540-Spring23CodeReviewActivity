@@ -26,6 +26,10 @@ public class StringManipulation implements StringManipulationInterface {
 
     @Override
     public String removeNthCharacter(int n, boolean maintainSpacing) {
+        
+        if (this.string == null || this.string.isEmpty()){
+            return "";
+        }
         int length = string.length();
 
         if (n > string.length()) {
