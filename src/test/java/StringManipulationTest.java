@@ -72,34 +72,34 @@ public class StringManipulationTest {
     }
 
     @Test
-    public void testRemoveNthCharacter8(){
+    public void testRemoveNthCharacter4(){
         assertThrows(IllegalArgumentException.class, () -> {  
         manipulatedstring.setString("BUBU");
         manipulatedstring.removeNthCharacter(-3, true);
         });
 
     @Test
-    public void testRemoveNthCharacter5() {
+    public void testRemoveNthCharacter5(){
         assertThrows(IndexOutOfBoundsException.class, () -> {
             manipulatedstring.setString("love");
             manipulatedstring.removeNthCharacter(7, true);
         });
     }
+
     @Test
-    public void testRemoveNthCharacter6() {
+    public void testRemoveNthCharacter6(){
         assertThrows(IllegalArgumentException.class, () -> {
             manipulatedstring.setString(" ");
             manipulatedstring.removeNthCharacter(0, true);
         });
     }
+
     @Test
     public void testRemoveNthCharacter7(){
         manipulatedstring.setString("A B C D E F");
         assertEquals("", manipulatedstring.removeNthCharacter(1, false));
     }
 
-
-    }
 
     @Test
     public void testGeSubStrings1() {
