@@ -43,7 +43,7 @@ public class StringManipulationTest {
 
     @Test
     public void testCount4() {
-        manipulatedstring.setString("  Spaces   between  words ");
+        manipulatedstring.setString("Spaces   between  words ");
         int length = manipulatedstring.count();
         assertEquals(3, length);
     }
@@ -94,6 +94,14 @@ public class StringManipulationTest {
     public void testRemoveNthCharacter7(){
         manipulatedstring.setString("A B C D E F");
         assertEquals("A B C D E F", manipulatedstring.removeNthCharacter(4, true));
+    }
+
+    @Test
+    public void testRemoveNthCharacter8(){
+        assertThrows(IllegalArgumentException.class, () -> {  
+        manipulatedstring.setString("BUBU");
+        manipulatedstring.removeNthCharacter(-1, true);
+        });
     }
 
     @Test
