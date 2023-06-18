@@ -85,17 +85,17 @@ public class StringManipulation implements StringManipulationInterface {
             wordArrayList.add(word);
         }
         int test = wordArrayList.size();
-        String[] aa = new String[test];
+        String[] tempStringArray = new String[test];
 
         for (int i = 0; i < test; i++) {
-            aa[i] = wordArrayList.get(i);
+            tempStringArray[i] = wordArrayList.get(i);
         }
-        String[] bb = new String[endWord - startWord + 1];
+        String[] finalStringArray = new String[endWord - startWord + 1];
         int count = 0;
         for (int i = startWord - 1; i < endWord; i++) {
-            bb[count++] = aa[i];
+            finalStringArray[count++] = tempStringArray[i];
         }
-        return bb;
+        return finalStringArray;
     }
 
     @Override
@@ -109,18 +109,18 @@ public class StringManipulation implements StringManipulationInterface {
         char [] charArray = message.toCharArray();
 
         //HashMap contains index in key, and associated value from message.
-        HashMap<Integer, Character> abc = new HashMap<>();
+        HashMap<Integer, Character> map = new HashMap<>();
 
         for (int i = 0; i<message.length(); i++) {
-            abc.put(i, charArray[i]);
+            map.put(i, charArray[i]);
         }
-        String ap = "";
+        String finalString = "";
         for (int i = 0; i<message.length(); i++){
             if (indices[i]<0 || indices[i]>=message.length()){
                 throw new IndexOutOfBoundsException("Cannot have negative index values for indices array");
             }
-            ap = ap + abc.get(indices[i]);
+            finalString = finalString + map.get(indices[i]);
         }
-        return ap;
+        return finalString;
     }
 }
