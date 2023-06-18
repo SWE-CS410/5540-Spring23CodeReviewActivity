@@ -14,7 +14,7 @@ public class StringManipulation implements StringManipulationInterface {
 
     @Override
     public int count() {
-         
+
         if (this.string == null){
             throw new NullPointerException("NullPointerException");
         }
@@ -35,7 +35,7 @@ public class StringManipulation implements StringManipulationInterface {
 
     @Override
     public String removeNthCharacter(int n, boolean maintainSpacing) {
-        
+
         if (this.string == null || this.string.isEmpty()){
             throw new NullPointerException("NullPointerException");
         }
@@ -91,7 +91,15 @@ public class StringManipulation implements StringManipulationInterface {
 
     @Override
     public String restoreString(int[] indices) {
-        if (string == null || string.isEmpty() || indices == null || indices.length != string.length()) {
+        if (this.string.isEmpty()){
+            return "";
+        }
+
+        if ( indices.length != string.length()) {
+            throw new IllegalArgumentException("Invalid");
+        }
+
+        if (string == null || indices == null) {
             throw new NullPointerException("NullPointerException");
         }
 
