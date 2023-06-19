@@ -129,13 +129,16 @@ public class StringManipulationTest {
     }
     @Test
     public void testGeSubStrings5() {
-        manipulatedstring.setString("this is another string");
-        assertThrows(IndexOutOfBoundsException.class, ()-> manipulatedstring.getSubStrings(1,5));
+        manipulatedstring.setString("this is my string");
+        String [] sString = manipulatedString.getSubStrings(4,4);
+        String expected = "string";
+        String actual = sString[0];
+        assertEquals(expected, actual);
     }
     @Test
     public void testGeSubStrings6() {
         manipulatedstring.setString("this is another string");
-        assertThrows(IllegalArgumentException.class, ()-> manipulatedstring.getSubStrings(0,3));
+        assertThrows(IndexOutofBoundsException.class, ()-> manipulatedstring.getSubStrings(0,3));
     }
 
     @Test
@@ -174,8 +177,8 @@ public class StringManipulationTest {
     public void testRestoreString4()
     {
         manipulatedstring.setString("readb");
-        int[] indices = { 0,1,2,3,4,5 };
-        assertThrows(IllegalArgumentException.class, () -> {
+        int[] indices = { 0,1,2,3,4,5,17 };
+        assertThrows(IndexOutOfBoundsException.class, () -> {
             manipulatedstring.restoreString(indices);
         });
 
@@ -185,8 +188,8 @@ public class StringManipulationTest {
     public void testRestoreString5()
     {
         manipulatedstring.setString("readb");
-        int[] indices = { 0,1,2,3,4,5 };
-        assertThrows(IllegalArgumentException.class, () -> {
+        int[] indices = { 0,1,2,3,4,5,-7 };
+        assertThrows(IndexOutOfBoundsException.class, () -> {
             manipulatedstring.restoreString(indices);
         });
 
