@@ -45,6 +45,9 @@ public class StringManipulation implements StringManipulationInterface {
         if (n <= 0) {
             throw new IllegalArgumentException("'n' must be greater than zero.");
         }
+        if (string.isEmpty()) {
+            throw new IllegalArgumentException("String is empty!");
+        }
         // if n > length, throw an error
         if (n > string.length()) {
             throw new IndexOutOfBoundsException("'n' is greater than the string length.");
@@ -53,6 +56,8 @@ public class StringManipulation implements StringManipulationInterface {
         if (string == null) {
             throw new NullPointerException("String is null!");
         }
+
+
         // string builder to manipulate
         StringBuilder result = new StringBuilder();
         // setting count to 1

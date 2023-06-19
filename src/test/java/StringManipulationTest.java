@@ -125,6 +125,12 @@ public class StringManipulationTest {
         assertThrows(NullPointerException.class, () -> manipulatedstring.removeNthCharacter(2, true));
     }
 
+    @Test
+    public void testRemoveNthCharacter9() {
+        manipulatedstring.setString("");
+        assertThrows(IllegalArgumentException.class, () -> manipulatedstring.removeNthCharacter(2, true));
+    }
+
     // DO NOT EDIT
     @Test
     public void testGeSubStrings1() {
