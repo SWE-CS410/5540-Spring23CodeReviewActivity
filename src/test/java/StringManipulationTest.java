@@ -216,7 +216,7 @@ public class StringManipulationTest {
     public void testRestoreString3() {
         // Set up the initial string
         manipulatedstring.setString("abc");
-        // seting up indices for shuffling, this one goes out of bounds
+        // setting up indices for shuffling, this one goes out of bounds
         int[] indices = { 1, 2, 4 };
         assertThrows(IndexOutOfBoundsException.class, () -> manipulatedstring.restoreString(indices));
     }
