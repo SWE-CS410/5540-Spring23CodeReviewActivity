@@ -34,7 +34,8 @@ public class StringManipulationTest {
     @Test
     public void testCount2() {
         manipulatedstring.setString("");
-        assertThrows(IndexOutOfBoundsException.class, () -> manipulatedstring.count());
+        int length = manipulatedstring.count();
+        assertEquals(0,length);
     }
 
     // Test case for a null string

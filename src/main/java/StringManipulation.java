@@ -8,7 +8,7 @@ which defines the contract for these operations.
 * */
 public class StringManipulation implements StringManipulationInterface {
 
-    String string; // holding string input
+   private String string; // holding string input
 
     @Override
     public String getString() { // method to return string
@@ -29,7 +29,7 @@ public class StringManipulation implements StringManipulationInterface {
         }
         // if string is empty throw an exception
         if (string.isEmpty()) {
-            throw new IndexOutOfBoundsException("string is empty!");
+            return 0;
         }
         // creating an array for the string
         String[] words = string.split("\\s+");
@@ -79,10 +79,6 @@ public class StringManipulation implements StringManipulationInterface {
         if (startWord <= 0 || endWord <= 0 || startWord > endWord || endWord > words.length) {
             throw new IllegalArgumentException("Invalid values for startWord and endWord");
         }
-        // catching end word larger than length of string
-        if (endWord > words.length) {
-            throw new IndexOutOfBoundsException("Not enough words in the string");
-        }
 
         int length = endWord - startWord + 1;
         String[] subStrings = new String[length];
@@ -96,8 +92,11 @@ public class StringManipulation implements StringManipulationInterface {
 
     @Override
     public String restoreString(int[] indices) {
-        if (string == null || indices.length != string.length()) {
+        if (indices.length != string.length()) {
             throw new IllegalArgumentException("Invalid length of indices array");
+        }
+        if (string == null) {
+            throw new NullPointerException("string is null!");
         }
 
         char[] characters = string.toCharArray(); // Convert the string to a character array
