@@ -70,31 +70,6 @@ public class StringManipulation implements StringManipulationInterface {
         return result.toString();// return modified string
     }
 
-    /*
-    @Override
-    public String[] getSubStrings(int startWord, int endWord) {
-        // catching null string
-        if (string == null) {
-            throw new NullPointerException("String cannot be null!");
-        }
-        String[] words = string.trim().split("\\s+");// splitting the string into words
-        // throwing an error if out of bounds
-        if (startWord <= 0 || startWord > endWord || endWord > words.length) {
-            throw new IllegalArgumentException("Invalid values for startWord and endWord");
-        }
-
-        int length = endWord - startWord + 1;
-        String[] subStrings = new String[length];
-
-        for (int i = startWord - 1; i < endWord; i++) {
-            subStrings[i - startWord + 1] = words[i]; // copying words into array
-        }
-
-        return subStrings;// returning the selected substrings
-    }
-
-     */
-
     @Override
     public String[] getSubStrings(int startWord, int endWord) {
         // Checking for null string
