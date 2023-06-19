@@ -34,7 +34,7 @@ public class StringManipulation implements StringManipulationInterface {
             return 0;
         }
         // creating an array for the string
-        String[] words = string.split("\\s+");
+        String[] words = string.trim().split("\\W+");
         // returning length of words(string count)
         return words.length;
     }

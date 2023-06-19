@@ -53,6 +53,20 @@ public class StringManipulationTest {
         assertEquals(2, count);
     }
 
+    @Test
+    public void testCount5() {
+        manipulatedstring.setString(" Hello World ");
+        int count = manipulatedstring.count();
+        assertEquals(2, count);
+    }
+
+    @Test
+    public void testCount6() {
+        manipulatedstring.setString("    There       are words         here !! ");
+        int count = manipulatedstring.count();
+        assertEquals(4, count);
+    }
+
     // DO NOT EDIT
     @Test
     public void testRemoveNthCharacter1() {
