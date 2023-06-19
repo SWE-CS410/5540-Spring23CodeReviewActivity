@@ -43,6 +43,10 @@ public class StringManipulation implements StringManipulationInterface {
 
     @Override
     public String removeNthCharacter(int n, boolean maintainSpacing) {
+        // catching null errors
+        if (string == null) {
+            throw new NullPointerException("String is null!");
+        }
         // if n < 0, throw an error
         if (n <= 0) {
             throw new IllegalArgumentException("'n' must be greater than zero.");
@@ -53,10 +57,6 @@ public class StringManipulation implements StringManipulationInterface {
         // if n > length, throw an error
         if (n > string.length()) {
             throw new IndexOutOfBoundsException("'n' is greater than the string length.");
-        }
-        // catching null errors
-        if (string == null) {
-            throw new NullPointerException("String is null!");
         }
 
 
