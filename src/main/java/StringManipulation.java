@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 //Author: Jonathan Jarman
 //Date: 6/11/2023
 //File: String Manipulation
@@ -68,6 +70,7 @@ public class StringManipulation implements StringManipulationInterface {
         return result.toString();// return modified string
     }
 
+    /*
     @Override
     public String[] getSubStrings(int startWord, int endWord) {
         // catching null string
@@ -76,7 +79,7 @@ public class StringManipulation implements StringManipulationInterface {
         }
         String[] words = string.trim().split("\\s+");// splitting the string into words
         // throwing an error if out of bounds
-        if (startWord <= 0 || endWord <= 0 || startWord > endWord || endWord > words.length) {
+        if (startWord <= 0 || startWord > endWord || endWord > words.length) {
             throw new IllegalArgumentException("Invalid values for startWord and endWord");
         }
 
@@ -90,23 +93,51 @@ public class StringManipulation implements StringManipulationInterface {
         return subStrings;// returning the selected substrings
     }
 
+     */
+
+    @Override
+    public String[] getSubStrings(int startWord, int endWord) {
+        // Checking for null string
+        if (string == null) {
+            throw new NullPointerException("String cannot be null!");
+        }
+
+        String[] words = string.trim().split("\\s+"); // Splitting the string into words
+
+        // Checking for invalid values of startWord and endWord
+        if (startWord <= 0 || startWord > endWord || endWord > words.length) {
+            throw new IllegalArgumentException("Invalid values for startWord and endWord");
+        }
+
+        int length = endWord - startWord + 1;
+        String[] subStrings = Arrays.copyOfRange(words, startWord - 1, endWord); // Copying words into the subStrings array
+
+        return subStrings; // Returning the selected substrings
+    }
+
     @Override
     public String restoreString(int[] indices) {
-        if (indices.length != string.length()) {
-            throw new IllegalArgumentException("Invalid length of indices array");
-        }
+
         if (string == null) {
             throw new NullPointerException("string is null!");
         }
 
-        char[] characters = string.toCharArray(); // Convert the string to a character array
-        char[] shuffled = new char[characters.length]; // Create a new character array for the shuffled string
-        for (int i = 0; i < characters.length; i++) { // Iterate over the indices array and restore the shuffled string
-            if (indices[i] < 0 || indices[i] >= characters.length) { // Check if the index is out of bounds
+        int length = string.length();
+
+        if (indices.length != length) {
+            throw new IllegalArgumentException("Invalid length of indices array");
+        }
+
+        char[] shuffled = new char[length]; // Create a new character array for the shuffled string
+
+        for (int i = 0; i < length; i++) { // Iterate over the indices array and restore the shuffled string
+            int index = indices[i];
+
+            if (index < 0 || index >= length) { // Check if the index is out of bounds
                 throw new IndexOutOfBoundsException("Invalid index in indices array");
             }
-            shuffled[indices[i]] = characters[i]; // Assign the character at the corresponding index in the shuffled
-                                                  // array
+
+            shuffled[index] = string.charAt(i); // Assign the character directly from the original string
         }
 
         return new String(shuffled); // Convert the shuffled character array back to a string
