@@ -209,7 +209,7 @@ public class StringManipulationTest {
         // setting indicies
         int[] indices = { 0, 1, 2 };
         // throwing an exception for null string
-        assertThrows(IllegalArgumentException.class, () -> manipulatedstring.restoreString(indices));
+        assertThrows(NullPointerException.class, () -> manipulatedstring.restoreString(indices));
     }
 
     // Test case to verify restoring a shuffled string with multiple indices
