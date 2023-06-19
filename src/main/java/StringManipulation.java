@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 //Author: Jonathan Jarman
 //Date: 6/11/2023
@@ -108,18 +110,29 @@ public class StringManipulation implements StringManipulationInterface {
             throw new IllegalArgumentException("Invalid length of indices array");
         }
 
-        char[] shuffled = new char[length]; // Create a new character array for the shuffled string
+        Set<Integer> indexSet = new HashSet<>();
 
-        for (int i = 0; i < length; i++) { // Iterate over the indices array and restore the shuffled string
+        for (int i = 0; i < length; i++) {
             int index = indices[i];
 
-            if (index < 0 || index >= length) { // Check if the index is out of bounds
+            if (index < 0 || index >= length) {
                 throw new IndexOutOfBoundsException("Invalid index in indices array");
             }
 
-            shuffled[index] = string.charAt(i); // Assign the character directly from the original string
+            if (!indexSet.add(index)) {
+                throw new IllegalArgumentException("Duplicate index found: " + index);
+            }
         }
 
-        return new String(shuffled); // Convert the shuffled character array back to a string
+        char[] shuffled = new char[length];
+
+        for (int i = 0; i < length; i++) {
+            int index = indices[i];
+            shuffled[index] = string.charAt(i);
+        }
+
+        return new String(shuffled);
     }
+
+
 }

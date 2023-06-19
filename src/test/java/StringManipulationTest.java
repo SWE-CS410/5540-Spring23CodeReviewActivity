@@ -245,4 +245,17 @@ public class StringManipulationTest {
         assertEquals("dfcagbe", result);
     }
 
+    // Test case for restoring a string with duplicate indices in the indices array
+    @Test
+    public void testRestoreString6() {
+        // Set up the initial string
+        manipulatedstring.setString("example");
+
+        // Set up indices with duplicate values
+        int[] indices = { 2, 0, 1, 0, 3, 4, 5 };
+
+        // Expecting an IllegalArgumentException due to duplicate indices
+        assertThrows(IllegalArgumentException.class, () -> manipulatedstring.restoreString(indices));
+    }
+
 }
