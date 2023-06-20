@@ -121,7 +121,8 @@ public class StringManipulationTest {
     public void testGetSubStrings2() {
         assertThrows(IllegalArgumentException.class, () -> {
             manipulatedstring.setString("OnlyOneWord");
-            String[] subStrings = manipulatedstring.getSubStrings(1, -1);
+           // String[] subStrings = 
+           manipulatedstring.getSubStrings(1, -1);
         });
     }
 
@@ -168,7 +169,8 @@ public class StringManipulationTest {
         assertThrows(IllegalArgumentException.class, () -> {
             manipulatedstring.setString("testing");
             int[] indices = {};
-            String restoredString = manipulatedstring.restoreString(indices);
+            //String restoredString = 
+            manipulatedstring.restoreString(indices);
         });
     }
 
@@ -176,7 +178,8 @@ public class StringManipulationTest {
     public void testRestoreString3() {
         assertThrows(NullPointerException.class,() ->{
             int[] indices = {};
-            String restoredString = manipulatedstring.restoreString(indices);
+            //String restoredString = 
+            manipulatedstring.restoreString(indices);
         });
     }
 
@@ -185,7 +188,8 @@ public class StringManipulationTest {
         assertThrows(IndexOutOfBoundsException.class, () -> {
             manipulatedstring.setString("hello");
             int[] indices = {4, 3, 2, 1, -1};
-            String restoredString = manipulatedstring.restoreString(indices);
+           // String restoredString = 
+           manipulatedstring.restoreString(indices);
         });
     }
 
@@ -194,7 +198,8 @@ public class StringManipulationTest {
         assertThrows(IndexOutOfBoundsException.class, () -> {
             manipulatedstring.setString("world");
             int[] indices = {0, 2, 1, 3, 5};
-            String restoredString = manipulatedstring.restoreString(indices);
+            //String restoredString = 
+            manipulatedstring.restoreString(indices);
         });
     }
 
