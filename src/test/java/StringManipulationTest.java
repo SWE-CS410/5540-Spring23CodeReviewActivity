@@ -37,7 +37,8 @@ public class StringManipulationTest {
     @Test
     public void testCount3() {
         assertThrows(NullPointerException.class, () -> {
-            int length = manipulatedstring.count();
+            //int length = 
+            manipulatedstring.count();
         });
     }
 
