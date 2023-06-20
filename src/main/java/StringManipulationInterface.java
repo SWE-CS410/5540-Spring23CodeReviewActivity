@@ -1,108 +1,187 @@
-/**
- * This is an interface for a simple class that represents a string, defined
- * as a sequence of characters.
- *
- */
-public interface StringManipulationInterface {
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-    /**
-     * Returns the current string. If the string is null, it should return null.
-     *
-     * @return Current string
-     */
-    String getString();
 
-    /**
-     * Sets the value of the current string.
-     *
-     * @param string The value to be set
-     */
-    void setString(String string);
+import static org.junit.jupiter.api.Assertions.*;
 
-    /**
-     * Returns the number of words in the current string
-     *
-     * @return Number of words in the current string
-     */
-    int count();
+public class StringManipulationTest {
 
-    /**
-     * Returns a string that consists of all characters in the original string except for the characters
-     * in positions n, 2n, 3n, and so on, either deleting those or replacing them
-     * with a white space. The characters in the resulting string should be in the same order
-     * and with the same case as in the current string.
-     *
-     *
-     * Examples:
-     * - For n=2 and maintainSpacing=false, the method would return the string without the 2nd, 4th,
-     *   6th, and so on characters in the string.
-     * - For n=3 and maintainSpacing=true, the method would return the string with a space replacing
-     *  the 3nd, 6th, 9th, and so on characters in the string.
-     *
-     * Values n and maintainSpacing are passed as parameters. The starting character is considered to be in Position 1.
-     * Special cases expected behavior
-     *
-     * throws IndexOutOfBoundsException If n is greater than the string length.
-     * throws IllegalArgumentException If "n" less than or equal to zero.
-     *
-     * @param n Determines the positions of the characters to be returned
-     * @param maintainSpacing Determines whether replace the missing characters with a space, in order
-     *                        to maintain the length of the original string.
-     * @return String made of characters at positions other than n, 2n, and so on in the current string
-     *
-     *
-     */
-    String removeNthCharacter(int n, boolean maintainSpacing);
+    private StringManipulationInterface manipulatedstring;
 
-    /**
-     * Returns the words from position "startWord" to position "endWord"
-     * in the sentence, with 1 being the first Word in the String
-     *
-     * @param startWord
-     *            Position of the first word to return
-     * @param endWord
-     *            Position of the last word to return
-     * @return
-     * String array of the words from position "startWord" to position "endWord"
-     * Special cases
-     * throws IllegalArgumentException
-     *             If either "startWord" or "endWord" are invalid (i.e.,
-     *             "startWord" <= 0, "endWord" <= 0, or "startWord"
-     *             > "endWord")
-     * throws IndexOutOfBoundsException
-     *             If the string has less than "endWord" words in it
-     */
-    String[] getSubStrings(int startWord, int endWord);
+    @BeforeEach
+    public void setUp() {
+        manipulatedstring = new StringManipulation();
+    }
 
-    /**
-     * Given a string s and an integer array indices of the same length.
-     * The string s will be shuffled such that the character at the ith position moves to indices[i] in the shuffled string.
-     * Return the shuffled string.
-     * example:
-     * Input: string = "UnitTest", indices = [4,5,6,7,0,1,2,3]
-     * Output: "TestUnit"
-     * Explanation:
-     * indices: 4 5 6 7 0 1 2 3
-     * String:  U n i t T e s t
-     * Actions to Shuffle: Shift U to 4th position, n to 5th position, i to 6th position ......
-     * Output: T e s t U n i t
-     *         0 1 2 3 4 5 6 7
-     * As shown, "UnitTest" becomes "TestUnit" after shuffling.
-     *
-     * special cases and assumptions
-     * s contains lower-case or upper-case English letters.
-     * All values of indices are unique (i.e. indices is a permutation of the integers from 0 to n - 1).
-     * indices length is the same as the string length.
-     *
-     * throws IllegalArgumentException if not s.length == indices.length == n
-     * throws IndexOutOfBoundsException if   indices[i]< 0  or  indices[i]>= string length
-     *
-     * @param indices is an integer array for shuffled string new indices positions
-     * the character at the ith position moves to indices[i] in the shuffled string.
-     *
-     * @return Return the shuffled string.
-     *
-     * */
-    String restoreString(int[] indices);
+    @AfterEach
+    public void tearDown() {
+        manipulatedstring = null;
+    }
+
+    @Test
+    public void testCount1() {
+        manipulatedstring.setString("This is my string");
+        int length = manipulatedstring.count();
+        assertEquals(4, length);
+    }
+
+    @Test
+    public void testCount2() {
+        manipulatedstring.setString("This is my string");
+        int length = manipulatedstring.count();
+        assertEquals(0, length);
+    }
+
+    @Test
+    public void testCount3() {
+        manipulatedstring.setString("This is my string");
+        int length = manipulatedstring.count();
+        assertEquals(1, length);
+    }
+
+    @Test
+    public void testCount4() {
+        manipulatedstring.setString("This is my string");
+        int length = manipulatedstring.count();
+        assertEquals(3, length);
+    }
+
+    @Test
+    public void testRemoveNthCharacter1() {
+        manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
+        assertEquals("I' bttr uts0e 16tsinths trn6 rgh?", manipulatedstring.removeNthCharacter(3, false));
+    }
+
+    @Test
+    public void testRemoveNthCharacter2() {
+        manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
+        assertEquals("I'  b tt r  ut s0 e  16 ts in th s  tr n6  r gh ?", manipulatedstring.removeNthCharacter(3, true));
+    }
+
+    @Test
+    public void testRemoveNthCharacter3() {
+        manipulatedstring.setString("Testing Testing Please");
+        assertEquals("Teting esting Plee", manipulatedstring.removeNthCharacter(2, false));
+    }
+
+    @Test
+    public void testRemoveNthCharacter4() {
+        manipulatedstring.setString("Testing Testing Please");
+        assertEquals("Teting Testing Plee", manipulatedstring.removeNthCharacter(2, true));
+    }
+
+    @Test
+    public void testRemoveNthCharacter5() {
+        manipulatedstring.setString("1234567890");
+        assertEquals("135790", manipulatedstring.removeNthCharacter(2, false));
+    }
+
+    @Test
+    public void testRemoveNthCharacter6() {
+        manipulatedstring.setString("1234567890");
+        assertEquals("1 3 5 7 9 0", manipulatedstring.removeNthCharacter(2, true));
+    }
+
+    @Test
+    public void testRemoveNthCharacter7() {
+        manipulatedstring.setString("abcdefg");
+        assertEquals("abcdefg", manipulatedstring.removeNthCharacter(10, false));
+    }
+
+    @Test
+    public void testGeSubStrings1() {
+        manipulatedstring.setString("This is my string");
+        String [] sStings = manipulatedstring.getSubStrings(3, 4);
+
+        assertEquals(sStings[0], "my");
+        assertEquals(sStings[1], "string");
+    }
+
+    @Test
+    public void testGeSubStrings2() {
+        manipulatedstring.setString("I need to test this");
+        String[] substrings = manipulatedstring.getSubStrings(2, 4);
+
+        assertEquals("need,", substrings[0]);
+        assertEquals("test", substrings[1]);
+        assertEquals("this", substrings[2]);
+    }
+    
+    @Test
+    public void testGeSubStrings3() {
+        manipulatedstring.setString("Java is the best language");
+        String[] substrings = manipulatedstring.getSubStrings(1, 3);
+
+        assertEquals("is", substrings[0]);
+        assertEquals("Java", substrings[1]);
+        assertEquals("Language", substrings[2]);
+    }
+
+    @Test
+    public void testGeSubStrings4() {
+        manipulatedstring.setString("Learning computer science is awesome");
+        String[] substrings = manipulatedstring.getSubStrings(1, 1);
+
+        assertEquals("Learning", substrings[0]);
+    }
+
+    @Test
+    public void testGeSubStrings5() {
+        manipulatedstring.setString("Hello");
+        String[] substrings = manipulatedstring.getSubStrings(2, 5);
+
+        assertNull(substrings);
+    }
+
+    @Test
+    public void testGeSubStrings6() {
+        manipulatedstring.setString("This is a Java program");
+        String[] substrings = manipulatedstring.getSubStrings(4, 6);
+
+        assertEquals("Java", substrings[0]);
+        assertNull(substrings[1]);
+    }
+    @Test
+    public void testRestoreString1()
+    {
+        manipulatedstring.setString("art");
+        int [] array;
+        array=new int[]{1,0,2};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals(restoreString, "rat");
+    }
+
+    @Test
+    public void testRestoreString2() {
+        manipulatedstring.setString("alusninep eht gnitisiv evol I");
+        int[] array = new int[]{11, 4, 6, 5, 1, 7, 3, 2, 10, 9, 8, 0};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals("I love visiting the peninsula", restoreString);
+    }
+
+    @Test
+    public void testRestoreString3() {
+        manipulatedstring.setString("yadnoM no eud si sihT");
+        int[] array = new int[]{4, 2, 0, 1, 3, 6, 5};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals("This is due on Monday", restoreString);
+    }
+
+    @Test
+    public void testRestoreString4() {
+        manipulatedstring.setString("010203040500");
+        int[] array = new int[]{5, 4, 3, 2, 1, 0};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals("005040302010", restoreString);
+    }
+
+    @Test
+    public void testRestoreString5() {
+        manipulatedstring.setString("9876543210");
+        int[] array = new int[]{9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals("0123456789", restoreString);
+    }
 
 }
