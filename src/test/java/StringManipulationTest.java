@@ -1,3 +1,4 @@
+import jdk.jfr.StackTrace;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,17 +29,30 @@ public class StringManipulationTest {
 
     @Test
     public void testCount2() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("");
+        int length = manipulatedstring.count();
+        assertEquals(0, length);
     }
 
     @Test
     public void testCount3() {
-        fail("Not yet implemented");
+        assertThrows(NullPointerException.class, () -> {
+            //int length = 
+            manipulatedstring.count();
+        });
     }
 
     @Test
     public void testCount4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("Spaces   between  words ");
+        int length = manipulatedstring.count();
+        assertEquals(3, length);
+    }
+
+    public void testCount5() {
+        manipulatedstring.setString(" ABCDEFD ");
+        int length = manipulatedstring.count();
+        assertEquals(1, length);
     }
 
     @Test
@@ -52,31 +66,48 @@ public class StringManipulationTest {
         manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
         assertEquals("I'  b tt r  ut s0 e  16 ts in th s  tr n6  r gh ?", manipulatedstring.removeNthCharacter(3, true));
     }
-
     @Test
     public void testRemoveNthCharacter3() {
-        fail("Not yet implemented");
+        //null
+        assertThrows(NullPointerException.class,() ->{
+            manipulatedstring.removeNthCharacter(3, true);
+        });
+    }
+
+
+    @Test
+    public void testRemoveNthCharacter4(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.setString("BUBU");
+            manipulatedstring.removeNthCharacter(-3, true);
+        });
     }
 
     @Test
-    public void testRemoveNthCharacter4() {
-        fail("Not yet implemented");
+    public void testRemoveNthCharacter5(){
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            manipulatedstring.setString("love");
+            manipulatedstring.removeNthCharacter(7, true);
+        });
     }
 
     @Test
-    public void testRemoveNthCharacter5() {
-        fail("Not yet implemented");
+    public void testRemoveNthCharacter6(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.setString(" ");
+            manipulatedstring.removeNthCharacter(0, true);
+        });
     }
 
     @Test
-    public void testRemoveNthCharacter6() {
-        fail("Not yet implemented");
+    public void testRemoveNthCharacter7(){
+        assertThrows(NullPointerException.class, () -> {
+            manipulatedstring.setString(""); //empty
+            manipulatedstring.removeNthCharacter(0,true);
+
+        });
     }
 
-    @Test
-    public void testRemoveNthCharacter7() {
-        fail("Not yet implemented");
-    }
 
     @Test
     public void testGeSubStrings1() {
@@ -88,25 +119,41 @@ public class StringManipulationTest {
     }
 
     @Test
-    public void testGeSubStrings2() {
-        fail("Not yet implemented");
+    public void testGetSubStrings2() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.setString("OnlyOneWord");
+           // String[] subStrings = 
+           manipulatedstring.getSubStrings(1, -1);
+        });
     }
+
     @Test
-    public void testGeSubStrings3() {
-        fail("Not yet implemented");
+    public void testGetSubStrings3() {
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            manipulatedstring.setString("One Two Three Four Five");
+            String[] subStrings = manipulatedstring.getSubStrings(4, 6);
+
+            assertEquals("Four", subStrings[0]);
+            assertEquals("Five", subStrings[1]);
+        });
     }
+
     @Test
-    public void testGeSubStrings4() {
-        fail("Not yet implemented");
+    public void testGetSubStrings4() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.setString("One Two Three Four Five");
+            String[] subStrings = manipulatedstring.getSubStrings(50,1);
+        });
     }
+
     @Test
-    public void testGeSubStrings5() {
-        fail("Not yet implemented");
+    public void testGetSubString5() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.setString("Programming");
+            String[] subStrings = manipulatedstring.getSubStrings(0, 0);
+        });
     }
-    @Test
-    public void testGeSubStrings6() {
-        fail("Not yet implemented");
-    }
+
 
     @Test
     public void testRestoreString1()
@@ -119,31 +166,42 @@ public class StringManipulationTest {
     }
 
     @Test
-    public void testRestoreString2()
-    {
-        fail("Not yet implemented");
-
+    public void testRestoreString2() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.setString("testing");
+            int[] indices = {};
+            //String restoredString = 
+            manipulatedstring.restoreString(indices);
+        });
     }
 
     @Test
-    public void testRestoreString3()
-    {
-        fail("Not yet implemented");
-
+    public void testRestoreString3() {
+        assertThrows(NullPointerException.class,() ->{
+            int[] indices = {};
+            //String restoredString = 
+            manipulatedstring.restoreString(indices);
+        });
     }
 
     @Test
-    public void testRestoreString4()
-    {
-        fail("Not yet implemented");
-
+    public void testRestoreString4() {
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            manipulatedstring.setString("hello");
+            int[] indices = {4, 3, 2, 1, -1};
+           // String restoredString = 
+           manipulatedstring.restoreString(indices);
+        });
     }
 
     @Test
-    public void testRestoreString5()
-    {
-        fail("Not yet implemented");
-
+    public void testRestoreString5() {
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            manipulatedstring.setString("world");
+            int[] indices = {0, 2, 1, 3, 5};
+            //String restoredString = 
+            manipulatedstring.restoreString(indices);
+        });
     }
 
 }
